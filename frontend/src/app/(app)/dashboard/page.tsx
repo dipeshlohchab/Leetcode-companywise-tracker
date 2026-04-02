@@ -15,8 +15,8 @@ export default function DashboardPage() {
   const { data: activity, isLoading: activityLoading } = useActivity();
   const { data: dailyStats, isLoading: heatmapLoading } = useDailyStats();
 
-  const topCompanies = companyProgress?.filter(c => c.solved > 0).slice(0, 8) ?? [];
-  const allCompaniesStarted = companyProgress?.filter(c => c.solved > 0 || c.attempted > 0).length ?? 0;
+  const topCompanies = companyProgress?.filter((c: typeof companyProgress[number]) => c.solved > 0).slice(0, 8) ?? [];
+  const allCompaniesStarted = companyProgress?.filter((c: typeof companyProgress[number]) => c.solved > 0 || c.attempted > 0).length ?? 0;
 
   const overallPct = globalStats
     ? Math.round((globalStats.solved / Math.max(globalStats.total, 1)) * 100)
@@ -124,7 +124,7 @@ export default function DashboardPage() {
               </div>
             ) : (activity?.length ?? 0) > 0 ? (
               <div className="space-y-1 -mx-2">
-                {activity!.map((item) => {
+                {activity!.map((item: typeof activity[number]) => {
                   const q = item.questionId as any;
                   const sc = statusConfig[item.status as keyof typeof statusConfig];
                   const dc = q?.difficulty ? difficultyConfig[q.difficulty as keyof typeof difficultyConfig] : null;

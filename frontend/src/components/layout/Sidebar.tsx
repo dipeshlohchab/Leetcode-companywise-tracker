@@ -26,7 +26,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
   const { data: companies } = useCompanies();
   const [search, setSearch] = useState('');
 
-  const filtered = companies?.filter(c =>
+  const filtered = companies?.filter((c: typeof companies[number]) =>
     c.name.toLowerCase().includes(search.toLowerCase())
   ).slice(0, 20);
 
@@ -104,7 +104,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           />
         </div>
         <div className="overflow-y-auto no-scrollbar space-y-0.5 flex-1">
-          {filtered?.map(company => (
+          {filtered?.map((company: typeof companies[number]) => (
             <Link
               key={company.name}
               href={`/company/${encodeURIComponent(company.name)}`}

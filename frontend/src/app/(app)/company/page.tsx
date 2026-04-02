@@ -20,7 +20,7 @@ function CompaniesContent() {
 
   const progressMap = useMemo(() => {
     const m: Record<string, { solved: number; total: number; pct: number }> = {};
-    progressData?.forEach(p => {
+    progressData?.forEach((p: { company: string; solved: number; total: number; percentage: number }) => {
       m[p.company] = { solved: p.solved, total: p.total, pct: p.percentage };
     });
     return m;
@@ -45,7 +45,7 @@ function CompaniesContent() {
   }, [companies, search, sort, progressMap]);
 
   const TIER_COMPANIES = ['Google', 'Amazon', 'Apple', 'Facebook', 'Microsoft', 'Netflix', 'Uber', 'Airbnb'];
-  const featured = companies?.filter(c => TIER_COMPANIES.includes(c.name)) ?? [];
+  const featured = companies?.filter((c: { name: string; count: number }) => TIER_COMPANIES.includes(c.name)) ?? [];
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -61,7 +61,7 @@ function CompaniesContent() {
             <TrendingUp className="w-3.5 h-3.5" /> Top Companies
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
-            {featured.map(c => {
+            {featured.map((c: { name: string; count: number }) => {
               const prog = progressMap[c.name];
               return (
                 <Link key={c.name} href={`/company/${encodeURIComponent(c.name)}`}

@@ -106,7 +106,7 @@ cp .env.example .env
 Edit `.env`:
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/dsa-tracker?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/dsa-tracker?retryWrites=true&w=majority
 JWT_SECRET=your_minimum_32_character_secret_key_here_make_it_random
 JWT_EXPIRES_IN=7d
 NODE_ENV=development
